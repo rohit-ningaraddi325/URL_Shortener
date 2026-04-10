@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: url-shortener
+    env: docker
+    plan: free
+    # Note: Free tier on Render doesn't support persistent disks. 
+    # Your SQLite database will reset if the app goes to sleep or restarts.
+    # To persist data, upgrade to a paid plan and uncomment the disk configuration below:
+    # disk:
+    #   name: data
+    #   mountPath: /app/data
+    #   sizeGB: 1
