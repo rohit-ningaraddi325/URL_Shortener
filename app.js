@@ -1,0 +1,43 @@
+const express = require('express');
+const urlRoutes = require('./routes/urlRoutes');
+const { errorHandler, notFoundHandler } = require('./middleware/errorMiddleware');
+const { initDB } = require('./models/db');
+const logger = require('./utils/logger');
+
+const app = express();
+const PORT = process.env.PORT || 8080;
+
+// ── Middleware ────────────────────────────────────────────────────────────────
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// Request logging
+app.use((req, _res, next) => {
+  logger.info(`${req.method} ${req.path}`);
+  next();
+});
+
+// ── Routes ────────────────────────────────────────────────────────────────────
+app.use('/', urlRoutes);
+
+// ── Error Handling ────────────────────────────────────────────────────────────
+app.use(notFoundHandler);
+app.use(errorHandler);
+
+// ── Bootstrap ─────────────────────────────────────────────────────────────────
+(async () => {
+  try {
+    initDB();
+    logger.info('Database initialised');
+
+    app.listen(PORT, () => {
+      logger.info(`URL Shortener running on port ${PORT}`);
+      logger.info(`BASE_URL: ${process.env.BASE_URL || '(not set – set BASE_URL env var)'}`);
+    });
+  } catch (err) {
+    logger.error('Failed to start server', err);
+    process.exit(1);
+  }
+})();
+
+module.exports = app;
