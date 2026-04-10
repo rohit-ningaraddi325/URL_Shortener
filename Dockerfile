@@ -19,8 +19,7 @@ WORKDIR /app
 COPY --from=builder /app/node_modules ./node_modules
 
 # Copy source
-COPY src/ ./src/
-COPY package.json ./
+COPY . .
 
 # Persistent volume for SQLite database
 RUN mkdir -p /app/data && chown -R appuser:appgroup /app
