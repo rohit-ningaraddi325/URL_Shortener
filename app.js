@@ -19,7 +19,15 @@ app.use((req, _res, next) => {
 
 // ── Routes ────────────────────────────────────────────────────────────────────
 app.use('/', urlRoutes);
-
+app.get('/', (req, res) => {
+  res.send(`
+    <h2>URL Shortener</h2>
+    <form method="POST" action="/shorten">
+      <input name="url" placeholder="Enter URL" />
+      <button type="submit">Shorten</button>
+    </form>
+  `);
+});
 // ── Error Handling ────────────────────────────────────────────────────────────
 app.use(notFoundHandler);
 app.use(errorHandler);
