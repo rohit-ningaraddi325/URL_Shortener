@@ -1,4 +1,4 @@
-const logger = require('../utils/logger');
+const logger = require('./logger');
 
 /**
  * 404 handler – catches requests that don't match any route.
