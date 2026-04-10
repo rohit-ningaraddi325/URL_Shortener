@@ -2,10 +2,10 @@ const Database = require('better-sqlite3');
 const path = require('path');
 const logger = require('./logger');
 
-const DB_PATH = process.env.DB_PATH || path.join(__dirname, '../../data/urls.db');
+const DB_PATH = process.env.DB_PATH || path.join(__dirname, 'data/urls.db');
 
 let db;
-
+logger.info(`Using DB path: ${DB_PATH}`);
 /**
  * Open (or create) the SQLite database and run migrations.
  */
