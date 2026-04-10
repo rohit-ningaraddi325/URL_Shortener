@@ -1,7 +1,7 @@
 const { nanoid } = require('nanoid');
 const validUrl = require('valid-url');
-const urlModel = require('../models/urlModel');
-const logger = require('../utils/logger');
+const urlModel = require('./urlModel');
+const logger = require('./logger');
 
 const ID_LENGTH = 7; // e.g. "xK3mP2q"
 
