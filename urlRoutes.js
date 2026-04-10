@@ -5,7 +5,7 @@ const {
   redirectToOriginal,
   getStats,
   listUrls,
-} = require('../controllers/urlController');
+} = require('./urlController');
 
 // Health check
 router.get('/health', (_req, res) =>
