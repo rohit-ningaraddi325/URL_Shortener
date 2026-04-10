@@ -1,8 +1,8 @@
 const express = require('express');
-const urlRoutes = require('./routes/urlRoutes');
-const { errorHandler, notFoundHandler } = require('./middleware/errorMiddleware');
-const { initDB } = require('./models/db');
-const logger = require('./utils/logger');
+const urlRoutes = require('./urlRoutes');
+const { errorHandler, notFoundHandler } = require('./errorMiddleware');
+const { initDB } = require('./db');
+const logger = require('./logger');
 
 const app = express();
 const PORT = process.env.PORT || 8080;
